@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp2.Views.SignIn"
+                          Title="SignIn"
+             
+             xmlns:views="clr-namespace:MauiApp2.ViewModels"
+             x:DataType="views:SignInViewModel"
+             FlowDirection="RightToLeft">
+    
+                
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Offset="0.0" Color="LightCyan"/>
+            <GradientStop Offset="0.5" Color="#3a7bd5"/>
+            <GradientStop Offset="1.0" Color="Purple"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <VerticalStackLayout
+            Padding="30"
+            Spacing="25"
+            VerticalOptions="Center">
+        <Label
+            FontAttributes="Bold"
+            FontSize="25"
+            VerticalOptions="Center"
+            Text="כניסה"
+            TextColor="Snow"/>
+        <Border
+            Padding="10"
+            Stroke="#ccc"
+            StrokeShape="RoundRectangle 8"
+            StrokeThickness="1">
+            <Entry
+                Text="{Binding UserName}"
+                Keyboard="Email"
+                FontSize="18"
+                Placeholder="Email"
+                TextColor="Wheat"
+                ReturnType="Go">
+            </Entry>
+        </Border>
+        <Border
+            Stroke="#ccc"
+            StrokeShape="RoundRectangle 8"
+            StrokeThickness="1">
+            <Grid
+                Padding="10"
+                ColumnDefinitions="*,Auto"
+                VerticalOptions="Center">
+                <Entry
+                    Text="{Binding UserPassword}"
+                    BackgroundColor="Transparent"
+                    IsPassword="{Binding EntryAsPassword}"
+                    FontSize="18"
+                    Placeholder="סיסמה"
+                    TextColor="Wheat"
+                    VerticalOptions="Center"/>
+                                <Button
+                    x:Name="TogglePassordButton"
+                    Command="{Binding ShowPasswordCommand}"
+                    Margin="5,0,0,0"
+                    Padding="0"
+                    BackgroundColor="Transparent"
+                    FontFamily="MaterialIcons-Regular"
+                    FontSize="24"
+                    HorizontalOptions="End"
+                    Text="{Binding PasswordIconCode}"
+                    TextColor="White"
+                    VerticalOptions="Center"/>
+            </Grid>
+        </Border>
+        <Button
+            Command="{Binding SignInCommand}"
+            CornerRadius="8"
+            FontSize="18"
+            HeightRequest="50"
+            Text="חיבור"
+            TextColor="White"/>
+        <Label
+            FontSize="45"
+            HorizontalTextAlignment="Center"
+            IsVisible="{Binding IsMessageLabelVisible}"
+            Text="{Binding MessageText}"
+            TextColor="{Binding MessageTextColor}"/>
+    </VerticalStackLayout>
+</ContentPage>
